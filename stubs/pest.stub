@@ -1,0 +1,12 @@
+<?php
+declare(strict_types = 1);
+
+describe('example', function(): void {
+    beforeEach(function(): void {
+       //
+    });
+
+    it('example', function(): void {
+        //
+    });
+});

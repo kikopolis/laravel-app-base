@@ -1,0 +1,30 @@
+<?php
+declare(strict_types = 1);
+
+namespace {{ namespace }};
+
+use App\Models\Concerns\HasUuidPrimaryKey;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Override;
+
+final class {{ class }} extends Pivot {
+    use HasUuidPrimaryKey;
+
+    public $timestamps = true;
+
+    /**
+     * @var list<string>
+     */
+    protected $fillable = [];
+
+    /**
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function casts(): array {
+        return [
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
+}

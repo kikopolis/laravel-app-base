@@ -1,0 +1,31 @@
+composer require php-static-analysis/attributes \
+&& composer require --dev barryvdh/laravel-debugbar \
+&& composer require --dev dave-liddament/phpstan-php-language-extensions \
+&& composer require --dev driftingly/rector-laravel \
+&& composer require --dev larastan/larastan \
+&& composer require --dev php-static-analysis/rector-rule \
+&& composer require --dev php-static-analysis/phpstan-extension \
+&& composer require --dev phpmd/phpmd \
+&& composer require --dev phpstan/phpstan-deprecation-rules \
+&& composer require --dev phpstan/phpstan-strict-rules \
+&& composer require --dev psalm/plugin-laravel \
+&& composer require --dev rector/rector \
+&& composer require --dev roave/security-advisories:dev-latest \
+&& composer require --dev shipmonk/phpstan-rules \
+&& composer require --dev sidz/phpstan-rules \
+&& composer require --dev spatie/laravel-login-link \
+&& composer require --dev spaze/phpstan-disallowed-calls \
+&& composer require --dev vimeo/psalm \
+&& composer require --dev voku/phpstan-rules \
+&& composer require --dev laravel/pint \
+&& composer require pestphp/pest --dev --with-all-dependencies \
+&& composer require pestphp/pest-plugin-type-coverage --dev \
+&& composer require pestphp/pest-plugin-laravel --dev \
+&& composer require pestphp/pest-plugin-faker --dev \
+&& composer require --dev laravel/dusk \
+&& composer require --dev deptrac/deptrac \
+&& ./vendor/bin/pest --init \
+&& php artisan dusk:install \
+&& php artisan sail:install --with=pgsql,valkey,meilisearch,mailpit,rabbitmq,selenium \
+&& ./vendor/bin/sail up -d \
+&& ./vendor/bin/sail artisan migrate

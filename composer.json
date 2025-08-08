@@ -1,0 +1,54 @@
+{
+    "scripts": {
+        "fresh": [
+            "@php artisan migrate:fresh",
+            "@php artisan db:seed"
+        ],
+        "test": [
+            "@php artisan config:clear --ansi",
+            "@php artisan test",
+            "@php artisan dusk"
+        ],
+        "test-mutate": [
+            "@php artisan config:clear --ansi",
+            "@php artisan test --mutate --parallel --min=75 --covered-only"
+        ],
+        "test-types": [
+            "vendor/big/pest --parallel --memory-limit=2G --type-coverage --compact --min-100"
+        ],
+        "pint": [
+            "vendor/bin/pint"
+        ],
+        "deptrac" : [
+            "vendor/bin/deptrac analyse"
+        ],
+        "stan": [
+            "phpstan analyse --memory-limit=2048M --ansi"
+        ],
+        "stan-gh" : [
+            "phpstan analyse --memory-limit=2048M --error-format=github"
+        ],
+        "rector": [
+            "vendor/bin/rector"
+        ],
+        "psalm": [
+            "vendor/bin/psalm --no-cache --threads=8"
+        ],
+        "phpmd": [
+            "vendor/bin/phpmd . ansi phpmd.ruleset.xml --exclude 'tests/*,vendor/*,node_modules/*,database/*' --suffixes php"
+        ],
+        "phpmd-gh": [
+            "vendor/bin/phpmd . github phpmd.ruleset.xml --exclude 'tests/*,vendor/*,node_modules/*,database/*' --suffixes php"
+        ],
+        "party" : [
+            "@composer pint",
+            "@composer rector",
+            "@composer stan",
+            "@composer psalm",
+            "@composer phpmd",
+            "@composer test-types",
+            "@composer test",
+            "@composer test-mutate"
+        ]
+    }
+}

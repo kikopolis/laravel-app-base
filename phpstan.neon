@@ -1,0 +1,92 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+    - vendor/nesbot/carbon/extension.neon
+    - vendor/spaze/phpstan-disallowed-calls/extension.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-execution-calls.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-dangerous-calls.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-insecure-calls.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-loose-calls.neon
+    - vendor/voku/phpstan-rules/rules.neon
+    - vendor/shipmonk/phpstan-rules/rules.neon
+    - vendor/sidz/phpstan-rules/rules.neon
+    - vendor/dave-liddament/phpstan-php-language-extensions/extension.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - phar://phpstan.phar/conf/bleedingEdge.neon
+    - vendor/php-static-analysis/phpstan-extension/extension.neon
+parameters:
+    reportUnmatchedIgnoredErrors: false
+    paths:
+        - app/
+        - bootstrap/
+        - tests/
+        - database/
+        - routes/
+    level: 10
+    parallel:
+        maximumNumberOfProcesses: 2
+    excludePaths:
+        - bootstrap/cache/
+    ignoreErrors:
+        - '#Dynamic call to static method Illuminate\\Contracts\\Auth\\Guard::check\(\)\.#'
+        - '#Dynamic call to static method Illuminate\\Auth\\SessionGuard::login\(\)\.#'
+        - '#Dynamic call to static method Illuminate\\Auth\\SessionGuard::logout\(\)\.#'
+        - '#Dynamic call to static method Illuminate\\Auth\\SessionGuard::attempt\(\)\.#'
+        - '#Dynamic call to static method Illuminate\\Http\\Request::validate\(\)\.#'
+        -
+            identifier: shipmonk.checkedExceptionInCallable
+            paths:
+                - routes/*
+                - tests/*
+    strictRules:
+        disallowedLooseComparison: true
+        booleansInConditions: true
+        booleansInLoopConditions: true
+        uselessCast: true
+        requireParentConstructorCall: true
+        disallowedBacktick: true
+        disallowedEmpty: true
+        disallowedImplicitArrayCreation: true
+        disallowedShortTernary: true
+        overwriteVariablesWithLoop: true
+        closureUsesThis: true
+        matchingInheritedMethodNames: true
+        numericOperandsInArithmeticOperators: true
+        strictFunctionCalls: true
+        dynamicCallOnStaticMethod: true
+        switchConditionsMatchingType: true
+        noVariableVariables: true
+        strictArrayFilter: true
+        illegalConstructorMethodCall: true
+    voku:
+        checkForAssignments: true
+        checkYodaConditions: true
+    noModelMake: true
+    checkUninitializedProperties: true
+    checkDynamicProperties: true
+    rememberPossiblyImpureFunctionValues: true
+    checkBenevolentUnionTypes: true
+    reportPossiblyNonexistentGeneralArrayOffset: true
+    reportPossiblyNonexistentConstantArrayOffset: true
+    checkOctaneCompatibility: true
+    reportAnyTypeWideningInVarTag: true
+    noEnvCallsOutsideOfConfig: true
+    checkModelProperties: true
+    checkModelAppends: true
+    checkMissingCallableSignature: true
+    checkMissingOverrideMethodAttribute: true
+    polluteScopeWithLoopInitialAssignments: true
+    polluteScopeWithAlwaysIterableForeach: true
+    treatPhpDocTypesAsCertain: false
+    earlyTerminatingFunctionCalls:
+        - abort
+        - die
+        - dd
+    universalObjectCratesClasses:
+        - Illuminate\Http\Request
+        - Illuminate\Support\Optional
+    mixinExcludeClasses:
+        - Eloquent
+    noUnnecessaryCollectionCall: true
+    checkConfigTypes: true
+    generalizeEnvReturnType: true

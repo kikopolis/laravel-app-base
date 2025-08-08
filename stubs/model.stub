@@ -1,0 +1,30 @@
+<?php
+declare(strict_types = 1);
+
+namespace {{ namespace }};
+
+use App\Models\Concerns\HasUuidPrimaryKey;
+{{ factoryImport }}
+use Illuminate\Database\Eloquent\Model;
+use Override;
+
+final class {{ class }} extends Model {
+    {{ factory }}
+    use HasUuidPrimaryKey;
+
+    /**
+     * @var list<string>
+     */
+    protected $fillable = [];
+
+    /**
+     * @return array<string, string>
+     */
+    #[Override]
+    protected function casts(): array {
+        return [
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
+}

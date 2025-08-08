@@ -1,0 +1,29 @@
+deptrac:
+    paths:
+        - ./app
+    exclude_files:
+        - '#.*test.*#'
+    layers:
+        -
+            name: Models
+            collectors:
+                -
+                    type: classLike
+                    value: .*MyNamespace\\Models\\.*
+        -
+            name: Controller
+            collectors:
+                -
+                    type: classLike
+                    value: .*MyNamespace\\.*Controller.*
+        -
+            name: Service
+            collectors:
+                -
+                    type: classLike
+                    value: .*Service.*
+    ruleset:
+        Controller:
+            - Service
+        Service:
+            - Models
